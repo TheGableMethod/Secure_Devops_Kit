@@ -255,7 +255,8 @@ fixing the issue for the time being):
 |NotAnIssue | User has verified the control data and attesting it as not a issue with proper justification|
 |WillNotFix | User has verified the control data and attesting it as not fixed with proper justification|
 |WillFixLater | User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan|
-
+|StateConfirmed| User has acknowledged that the control state (e.g., IP addressed ranges on a firewall) is correct/appropriate|
+|NotApplicable| User has verified that the control is not applicable for the given design/context (e.g., a storage container that is public access ‘by design’)
 
 The following table shows the complete 'state machine' that is used by AzSK to support control attestation. 
 The columns are described as under:
@@ -326,9 +327,9 @@ Expiry of an attestation is determined through different parameters like control
 There are two simple rules for determining the attestation expiry. Those are:
 
 Any control with evaluation result as not passed, 
- 1. and attested as 'NotAnIssue', such controls would expire in 90 days.
- 2. and attested as 'WillFixLater' or 'WillNotFix', such controls would expire based on the control severity table below.
-
+ 1. and attested as 'NotAnIssue' or 'NotApplicable', such controls would expire in 90 days.
+ 2. and attested as 'WillFixLater', 'WillNotFix' or 'StateConfirmed', such controls would expire based on the control severity table below if the control is in grace period.
+3. and attested as 'WillFixLater, such controls would expire when the grace period for the control exhausts.
 |ControlSeverity| ExpiryInDays|
 |----|---|
 |Critical| 7|
