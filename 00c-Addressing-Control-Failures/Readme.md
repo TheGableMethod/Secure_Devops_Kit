@@ -328,8 +328,10 @@ There are two simple rules for determining the attestation expiry. Those are:
 
 Any control with evaluation result as not passed, 
  1. and attested as 'NotAnIssue' or 'NotApplicable', such controls would expire in 90 days.
- 2. and attested as 'WillFixLater', 'WillNotFix' or 'StateConfirmed', such controls would expire based on the control severity table below if the control is in grace period.
-3. and attested as 'WillFixLater, such controls would expire when the grace period for the control exhausts.
+ 2. and attested as 'WillNotFix' or 'StateConfirmed', such controls would expire based on the control severity table below.
+ 3. and attested as 'WillFixLater, such controls would expire based on control severity if the control is in grace period, however the control would expire once the grace period for the control exhausts.
+
+
 |ControlSeverity| ExpiryInDays|
 |----|---|
 |Critical| 7|
